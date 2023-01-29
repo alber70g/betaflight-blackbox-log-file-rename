@@ -7,20 +7,11 @@ import { parseMappingArgument } from './parseMappingArgument';
 const HELP_PADDING = 25;
 
 async function main() {
-  const path = process.argv[1];
+  const path = process.argv[1].split('/').pop()!;
   const command = process.argv[2] as string | undefined;
 
   if (!command || process.argv.length < 3) {
-    console.log(
-      'Usage: ' +
-        `\n${path} rename <headerflags> <fileglob>` +
-        `\n${path} autorename <mapping> <fileglob>` +
-        `        ${'mapping example:'} "simplified_d_gain=slider_d,simplified_pi_gain=slider_pi"` +
-        `\n\n${'autorename example:'.padEnd(
-          HELP_PADDING,
-          ' '
-        )} autorename "simplified_d_gain=slider_d,simplified_pi_gain=slider_pi" "*.bfl"`
-    );
+    showHelp(path);
     process.exit(1);
   }
   switch (command) {
@@ -38,7 +29,22 @@ async function main() {
       await autorename(files, mapping);
       break;
     }
+    default: {
+      console.log(`Unknown command: ${command}`);
+      showHelp(path);
+      process.exit(1);
+    }
   }
+}
+
+function showHelp(path: string) {
+  console.log(
+    'Usage: ' +
+      `\n${path} rename <headerflags> <fileglob>` +
+      `\n${path} autorename <mapping> <fileglob> [--dry]` +
+      `\n  mapping example: "simplified_d_gain=slider_d,simplified_pi_gain=slider_pi"` +
+      `\n\nautorename example: \n  ${path} autorename "simplified_d_gain=slider_d,simplified_pi_gain=slider_pi" "*.bfl"`
+  );
 }
 
 main().catch(console.error);

@@ -1,7 +1,7 @@
-import fs from 'fs/promises';
+import fs, { rename } from 'fs/promises';
 import { Mapping } from './autorename';
 import { readConfig } from './readConfig';
-import { clone, forEach } from 'rambda';
+import { clone, forEach, map } from 'rambda';
 
 type FilePath = string;
 type Header = string;
@@ -54,6 +54,7 @@ export async function renameBlackboxLogs(
     return;
   }
 
+  const renames: Promise<void>[] = [];
   forEach((headers, filepath) => {
     const newFileName = Object.keys(mapping).reduce(
       (newFileName, headerKey) => {
@@ -62,6 +63,13 @@ export async function renameBlackboxLogs(
       },
       filepath.replace('.BFL', '')
     );
+
     console.log(`Renaming ${filepath} to ${newFileName}.bfl`);
+
+    if (!process.argv.includes('--dry')) {
+      renames.push(rename(filepath, `${newFileName}.bfl`));
+    }
   }, convertToValuesPerFile(differences));
+
+  await Promise.all(renames);
 }
