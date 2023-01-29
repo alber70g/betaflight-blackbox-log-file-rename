@@ -12,7 +12,27 @@ autorename example:
   betaflight-blackbox-log-file-rename autorename "simplified_d_gain=slider_d,simplified_pi_gain=slider_pi" "*.bfl"
 ```
 
+## Install & Basic Usage
+
+Install using you favourite nodejs package manager.
+
+```sh
+npm install --global betaflight-blackbox-log-file-rename
+# or
+npm i -g betaflight-blackbox-log-file-rename
+```
+
+This will show you the difference between all logs found in the target
+directory. You can use glob-pattern to match any file. This will NOT change the
+filename yet.
+
+```sh
+cd ./directory-with-bfl-logs
+betaflight-blackbox-log-file-rename autorename "*"
+```
+
 - [Betaflight Blackbox log renamer](#betaflight-blackbox-log-renamer)
+	- [Install \& Basic Usage](#install--basic-usage)
 	- [Analyse for differences](#analyse-for-differences)
 	- [Run dry-run to preview changes](#run-dry-run-to-preview-changes)
 	- [Real run](#real-run)

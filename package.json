@@ -1,6 +1,6 @@
 {
   "name": "betaflight-blackbox-log-file-rename",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rename betaflight blackbox logs based on the diffs in the logs headers",
   "main": "./src/index.ts",
   "bin": {
