@@ -1,5 +1,6 @@
+#!/usr/bin/env node
+
 import glob from 'glob';
-import { renameBlackboxLogs } from './renameBlackboxLogs';
 import { autorename } from './autorename';
 import { parseMappingArgument } from './parseMappingArgument';
 
@@ -8,7 +9,6 @@ const HELP_PADDING = 25;
 async function main() {
   const path = process.argv[1];
   const command = process.argv[2] as string | undefined;
-  console.log(command, process.argv);
 
   if (!command || process.argv.length < 3) {
     console.log(

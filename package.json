@@ -1,8 +1,11 @@
 {
-  "name": "blackbox-file-rename",
+  "name": "betaflight-blackbox-log-file-rename",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Rename betaflight blackbox logs based on the diffs in the logs headers",
+  "main": "./src/index.ts",
+  "bin": {
+    "betaflight-blackbox-log-file-rename": "./bin/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
