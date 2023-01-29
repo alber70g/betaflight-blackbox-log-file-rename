@@ -40,7 +40,7 @@ export async function renameBlackboxLogs(
   mapping: Mapping
 ) {
   if (Object.keys(mapping).length === 0) {
-    console.log('No mapping provided, files will not change');
+    console.log('\nINFO: No mapping provided, files will not change');
     console.log(
       'Pass a mapping to rename files, e.g. "simplified_d_gain=slider_d,simplified_pi_gain=slider_pi"'
     );
@@ -64,7 +64,7 @@ export async function renameBlackboxLogs(
       filepath.replace('.BFL', '')
     );
 
-    console.log(`Renaming ${filepath} to ${newFileName}.bfl`);
+    console.log(`${`Renaming "${filepath}" to`.padEnd(60)} "${newFileName}.bfl"`);
 
     if (!process.argv.includes('--dry')) {
       renames.push(rename(filepath, `${newFileName}.bfl`));

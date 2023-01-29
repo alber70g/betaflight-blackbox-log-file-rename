@@ -23,7 +23,7 @@ async function main() {
         mapping = parseMappingArgument(process.argv[3] as string);
       } else {
         console.log(
-          'WARNING: No mapping provided, files will not change. Continuing with analysis'
+          'INFO: No mapping provided, files will not change. Continuing with analysis'
         );
       }
       await autorename(files, mapping);
@@ -40,8 +40,7 @@ async function main() {
 function showHelp(path: string) {
   console.log(
     'Usage: ' +
-      `\n${path} rename <headerflags> <fileglob>` +
-      `\n${path} autorename <mapping> <fileglob> [--dry]` +
+      `${path} autorename <mapping> --dry <fileglob>` +
       `\n  mapping example: "simplified_d_gain=slider_d,simplified_pi_gain=slider_pi"` +
       `\n\nautorename example: \n  ${path} autorename "simplified_d_gain=slider_d,simplified_pi_gain=slider_pi" "*.bfl"`
   );
