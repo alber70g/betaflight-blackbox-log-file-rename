@@ -1,7 +1,6 @@
-import fs, { rename } from 'fs/promises';
+import { rename } from 'fs/promises';
 import { Mapping } from './autorename';
-import { readConfig } from './readConfig';
-import { clone, forEach, map } from 'rambda';
+import { clone, forEach } from 'rambda';
 
 type FilePath = string;
 type Header = string;
